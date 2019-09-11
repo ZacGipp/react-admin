@@ -120,7 +120,7 @@ class CustomTable extends Component {
     return !column.inDetail && <Column
       title={column.label}
       sorter={column.sortable}
-      key={column.columnKey}
+      key={column.label === Const.TABLE_BTN_TITLE ? column.label : column.columnKey}
       defaultSortOrder={defaultSortOrder[column.columnKey] || false}
       align="center"
       // fixed={isMobile() ? false : (column.label === Const.TABLE_BTN_TITLE ? 'right' : column.fixed)}

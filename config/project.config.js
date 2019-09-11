@@ -17,6 +17,6 @@ module.exports = {
   publicDir: path.resolve(__dirname, '../public'),
   vendor: [
     'react', 'react-dom', 'lodash', "antd", "axios", "core-js", "history", "mobx", "mobx-react", "rfx-core",
-    "js-cookie", "md5", "moment", "prop-types", "react-jss", "react-particles-js", "react-router-dom",
+    "js-cookie", "md5", "moment", "prop-types", "react-jss", "react-particles-js", "react-router-dom"
   ]
 };

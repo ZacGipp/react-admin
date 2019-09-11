@@ -68,6 +68,7 @@ class LoginPage extends React.Component {
     password: '',
     fromCookie: false,
     validateCodeKey: getRandom(16),
+    loading: false,
   };
 
   componentDidMount() {
@@ -88,7 +89,7 @@ class LoginPage extends React.Component {
   render() {
     const {classes} = this.props;
     const {getFieldDecorator} = this.props.form;
-    const {validateCodeKey, username, password} = this.state;
+    const {validateCodeKey, username, password, loading} = this.state;
     const validateImg = Const.BASE_API + '/imageCode.png?key=' + validateCodeKey;
     return (
       <div className={classes.container}>
@@ -131,7 +132,7 @@ class LoginPage extends React.Component {
             </div>
             <Form.Item>
               <Button type="primary" htmlType="submit" className={classes.loginFormButton}
-                      loading={false}>
+                      loading={loading}>
                 登录
               </Button>
             </Form.Item>
@@ -154,6 +155,7 @@ class LoginPage extends React.Component {
           validateCode,
           validateCodeKey,
         };
+        this.setState({loading: true});
         login(loginForm).then(res => {
           setToken(res.token);
 
@@ -164,8 +166,7 @@ class LoginPage extends React.Component {
           setLoginForm(JSON.stringify(userInfo));
 
           getUserInfo().finally(() => this.props.history.replace(getRememberedPath() || Path.HOME));
-        }).catch(err => {
-        });
+        }).finally(() => this.setState({loading: false}));
       }
     });
   };

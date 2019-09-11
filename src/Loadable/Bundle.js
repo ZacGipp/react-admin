@@ -17,24 +17,12 @@ class Bundle extends React.Component {
     this.load(this.props);
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const {mod} = nextProps;
-    // 当传入的type发生变化的时候，更新state
-    if (mod !== prevState.mod) {
-      return {
-        mod: mod.default ? mod.default : mod,
-      };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.load !== this.props.load) {
+      this.load(nextProps);
     }
-    // 否则，对于state不进行任何操作
-    return null;
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.load !== this.props.load) {
-  //     this.load(nextProps);
-  //   }
-  // }
-  //
   load(props) {
     // 重置状态
     this.setState({
