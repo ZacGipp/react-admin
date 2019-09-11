@@ -117,16 +117,16 @@ module.exports = {
       'process.env': envConfig
     }),
     // 将打包后的 dll.js 文件注入到我们生成的 index.html 中
-    // new IncludeAssetsPlugin({
-    //   assets: [{
-    //     path: './dll',
-    //     glob: '*.js',
-    //     globPath: dllDir
-    //   }],
-    //   append: false
-    // }),
-    // new webpack.DllReferencePlugin({
-    //   manifest: path.resolve(dllDir, 'vendor-manifest.json')
-    // })
+    new IncludeAssetsPlugin({
+      assets: [{
+        path: './dll',
+        glob: '*.js',
+        globPath: dllDir
+      }],
+      append: false
+    }),
+    new webpack.DllReferencePlugin({
+      manifest: path.resolve(dllDir, 'vendor-manifest.json')
+    })
   ]
 };

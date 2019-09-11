@@ -1,5 +1,5 @@
 module.export = {
   plugins: {
-      "postcss-cssnext": {}
+    "postcss-cssnext": {}
   }
 };
